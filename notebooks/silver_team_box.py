@@ -266,7 +266,7 @@ print("silver.team_box written successfully.")
 
 # COMMAND ----------
 
-silver = spark.sql("SELECT * FROM hoopLakehouse.silver.team_box")
+silver = spark.sql("SELECT * FROM hooplakehouse.silver.team_box")
 
 print(f"Row count: {silver.count():,}")
 
