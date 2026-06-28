@@ -243,13 +243,18 @@ print(f"Final row count: {df.count():,}")
 
 # COMMAND ----------
 
+# CREATE SILVER SCHEMA
+spark.sql("""
+CREATE SCHEMA IF NOT EXISTS hooplakehouse.silver
+""")
+
 (
     df.write
       .format("delta")
       .mode("overwrite")
       .option("mergeSchema", "true")
       .partitionBy("season", "season_type")
-      .saveAsTable("hoopLakehouse.silver.team_box")
+      .saveAsTable("hooplakehouse.silver.team_box")
 )
 
 print("silver.team_box written successfully.")
