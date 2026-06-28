@@ -35,7 +35,7 @@ df.printSchema()
 # MAGIC ## 2. Cast Mis-Typed Columns
 # MAGIC
 # MAGIC The following columns contain numeric values but were ingested as `string` in bronze.
-# MAGIC Cast them to `IntegerType` and flag any values that cannot be parsed.
+# MAGIC Cast them to `IntegerType` and report null counts introduced by invalid values.
 
 # COMMAND ----------
 
