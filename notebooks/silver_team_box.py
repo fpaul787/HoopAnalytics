@@ -2,7 +2,7 @@
 # MAGIC %md
 # MAGIC # Silver Layer — `silver_team_box`
 # MAGIC
-# MAGIC Transforms `hooplakehouse.hoop.silver_team_box` into a clean, analytics-ready table.
+# MAGIC Transforms `hooplakehouse.hoop.bronze_team_box` into a clean, analytics-ready table.
 # MAGIC
 # MAGIC **Steps**
 # MAGIC 1. Load bronze source
