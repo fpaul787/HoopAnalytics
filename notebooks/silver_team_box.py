@@ -25,7 +25,7 @@ from pyspark.sql.types import IntegerType
 
 # COMMAND ----------
 
-df = spark.read.table("hooplakehouse.hoop.silver_team_box")
+df = spark.read.table("hooplakehouse.hoop.bronze_team_box")
 print(f"Bronze row count: {df.count():,}")
 df.printSchema()
 
