@@ -2,7 +2,7 @@
 # MAGIC %md
 # MAGIC # Silver Layer — `silver_schedules`
 # MAGIC
-# MAGIC Transforms `HoopLakehouse.bronze.schedules` into a clean, analytics-ready table.
+# MAGIC Transforms `hooplakehouse.bronze.schedules` into a clean, analytics-ready table.
 # MAGIC
 # MAGIC **Steps**
 # MAGIC 1. Load bronze source
