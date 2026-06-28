@@ -27,7 +27,7 @@ from pyspark.sql.types import IntegerType, TimestampType
 
 # COMMAND ----------
 
-df = spark.read.table("HoopLakehouse.bronze.schedules")
+df = spark.read.table("hooplakehouse.bronze.schedules")
 print(f"Bronze row count: {df.count():,}")
 df.printSchema()
 
