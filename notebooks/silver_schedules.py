@@ -2,7 +2,7 @@
 # MAGIC %md
 # MAGIC # Silver Layer — `silver_schedules`
 # MAGIC
-# MAGIC Transforms `bronze_schedules` into a clean, analytics-ready table.
+# MAGIC Transforms `HoopLakehouse.bronze.schedules` into a clean, analytics-ready table.
 # MAGIC
 # MAGIC **Steps**
 # MAGIC 1. Load bronze source
@@ -12,7 +12,7 @@
 # MAGIC 5. Drop cosmetic / redundant columns
 # MAGIC 6. Deduplicate
 # MAGIC 7. Add derived columns
-# MAGIC 8. Write to Delta as `silver_schedules`
+# MAGIC 8. Write to Delta as `silver.schedules`
 # MAGIC 9. Validation
 
 # COMMAND ----------
