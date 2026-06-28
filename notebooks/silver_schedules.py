@@ -18,8 +18,7 @@
 # COMMAND ----------
 
 from pyspark.sql import functions as F
-from pyspark.sql.types import IntegerType, TimestampType
-
+from pyspark.sql.types import IntegerType
 # COMMAND ----------
 
 # MAGIC %md
