@@ -14,11 +14,12 @@ for folder in ["player_box", "team_box"]:
     source_path = f"{storage_base}/{folder}/parquet"
     target_table = f"hooplakehouse.bronze.{folder}"
     checkpoint = f"{storage_base}/_checkpoints/{folder}"
+    schema_location = f"{storage_base}/_schemas/{folder}"
 
     df = (spark.readStream
         .format("cloudFiles")
         .option("cloudFiles.format", "parquet")
-        .option("cloudFiles.schemaLocation", checkpoint)
+        .option("cloudFiles.schemaLocation", schema_location)
         .option("cloudFiles.inferColumnTypes", "true")
         .load(source_path)
     )
@@ -37,11 +38,12 @@ for folder in ["player_box", "team_box"]:
 storage_base = "abfss://hoopr-nba-storage@fabricdatastoragefp787.dfs.core.windows.net"
 source_path = f"{storage_base}/schedules/parquet"
 checkpoint = f"{storage_base}/_checkpoints/schedules"
+schema_location = f"{storage_base}/_schemas/schedules"
 
 df = (spark.readStream
     .format("cloudFiles")
     .option("cloudFiles.format", "parquet")
-    .option("cloudFiles.schemaLocation", checkpoint)
+    .option("cloudFiles.schemaLocation", schema_location)
     .option("cloudFiles.inferColumnTypes", "true")
     .option("pathGlobFilter", "nba_schedule_{200[0-9],201[0-9],202[0-6]}.parquet")
     .load(source_path)
