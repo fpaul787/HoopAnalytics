@@ -2,7 +2,7 @@
 # MAGIC %md
 # MAGIC # Silver Layer — `silver_schedules`
 # MAGIC
-# MAGIC Transforms `hooplakehouse.bronze.schedules` into a clean, analytics-ready table.
+# MAGIC Transforms `hooplakehouse.hoop.bronze_schedules` into a clean, analytics-ready table.
 # MAGIC
 # MAGIC **Steps**
 # MAGIC 1. Load bronze source
@@ -19,6 +19,7 @@
 
 from pyspark.sql import functions as F
 from pyspark.sql.types import IntegerType
+
 # COMMAND ----------
 
 # MAGIC %md
@@ -26,7 +27,7 @@ from pyspark.sql.types import IntegerType
 
 # COMMAND ----------
 
-df = spark.read.table("hooplakehouse.bronze.schedules")
+df = spark.read.table("hooplakehouse.hoop.bronze_schedules")
 print(f"Bronze row count: {df.count():,}")
 df.printSchema()
 
@@ -239,23 +240,16 @@ print(f"Final row count: {df.count():,}")
 
 # COMMAND ----------
 
-# CREATE SILVER SCHEMA
-spark.sql("""
-CREATE SCHEMA IF NOT EXISTS hooplakehouse.silver
-""")
-
-# COMMAND ----------
-
 (
     df.write
       .format("delta")
       .mode("overwrite")
       .option("overwriteSchema", "true")
       .partitionBy("season", "season_type")
-      .saveAsTable("hooplakehouse.silver.schedules")
+      .saveAsTable("hooplakehouse.hoop.silver_schedules")
 )
 
-print("silver.schedules written successfully.")
+print("hoop.silver_schedules written successfully.")
 
 # COMMAND ----------
 
@@ -264,7 +258,7 @@ print("silver.schedules written successfully.")
 
 # COMMAND ----------
 
-silver = spark.sql("SELECT * FROM hooplakehouse.silver.schedules")
+silver = spark.sql("SELECT * FROM hooplakehouse.hoop.silver_schedules")
 
 print(f"Row count: {silver.count():,}")
 
