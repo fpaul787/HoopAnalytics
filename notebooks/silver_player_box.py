@@ -46,7 +46,7 @@ from pyspark.sql.functions import upper
 
 df = df.withColumn(
     "home_away",
-    upper("home_away")
+    upper(col("home_away"))
 )
 
 # COMMAND ----------
