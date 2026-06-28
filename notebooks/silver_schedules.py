@@ -240,13 +240,6 @@ print(f"Final row count: {df.count():,}")
 
 # COMMAND ----------
 
-# CREATE SILVER SCHEMA
-spark.sql("""
-CREATE SCHEMA IF NOT EXISTS hooplakehouse.silver
-""")
-
-# COMMAND ----------
-
 (
     df.write
       .format("delta")
