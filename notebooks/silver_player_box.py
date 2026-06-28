@@ -1,5 +1,5 @@
 # Databricks notebook source
-df = spark.read.table("hooplakehouse.bronze.player_box")
+df = spark.read.table("hooplakehouse.hoop.bronze_player_box")
 
 # COMMAND ----------
 
@@ -93,13 +93,6 @@ df = df.withColumn(
 
 # COMMAND ----------
 
-# CREATE SILVER SCHEMA
-spark.sql("""
-CREATE SCHEMA IF NOT EXISTS hooplakehouse.silver
-""")
-
-# COMMAND ----------
-
 from pyspark.sql.functions import current_timestamp
 
 df = df.withColumn(
@@ -112,7 +105,7 @@ df = df.withColumn(
       .format("delta")
       .mode("overwrite")
       .option("overwriteSchema", "true")
-      .saveAsTable("hooplakehouse.silver.player_box")
+      .saveAsTable("hooplakehouse.hoop.silver_player_box")
 )
 
 # COMMAND ----------

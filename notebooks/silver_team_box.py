@@ -2,7 +2,7 @@
 # MAGIC %md
 # MAGIC # Silver Layer — `silver_team_box`
 # MAGIC
-# MAGIC Transforms `hooplakehouse.bronze.team_box` into a clean, analytics-ready table.
+# MAGIC Transforms `hooplakehouse.hoop.silver_team_box` into a clean, analytics-ready table.
 # MAGIC
 # MAGIC **Steps**
 # MAGIC 1. Load bronze source
@@ -11,7 +11,7 @@
 # MAGIC 4. Drop cosmetic / redundant columns
 # MAGIC 5. Deduplicate
 # MAGIC 6. Add derived / efficiency metrics
-# MAGIC 7. Write to Delta as `silver.team_box`
+# MAGIC 7. Write to Delta as `hoop.silver_team_box`
 
 # COMMAND ----------
 
@@ -25,7 +25,7 @@ from pyspark.sql.types import IntegerType
 
 # COMMAND ----------
 
-df = spark.read.table("hooplakehouse.bronze.team_box")
+df = spark.read.table("hooplakehouse.hoop.silver_team_box")
 print(f"Bronze row count: {df.count():,}")
 df.printSchema()
 
@@ -254,10 +254,10 @@ CREATE SCHEMA IF NOT EXISTS hooplakehouse.silver
       .mode("overwrite")
       .option("mergeSchema", "true")
       .partitionBy("season", "season_type")
-      .saveAsTable("hooplakehouse.silver.team_box")
+      .saveAsTable("hooplakehouse.hoop.silver_team_box")
 )
 
-print("silver.team_box written successfully.")
+print("hoop.silver_team_box written successfully.")
 
 # COMMAND ----------
 
@@ -266,7 +266,7 @@ print("silver.team_box written successfully.")
 
 # COMMAND ----------
 
-silver = spark.sql("SELECT * FROM hooplakehouse.silver.team_box")
+silver = spark.sql("SELECT * FROM hooplakehouse.hoop.silver_team_box")
 
 print(f"Row count: {silver.count():,}")
 

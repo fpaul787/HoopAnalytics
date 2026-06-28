@@ -5,6 +5,11 @@ spark.conf.set(
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC CREATE SCHEMA IF NOT EXISTS hooplakehouse.hoop;
+
+# COMMAND ----------
+
 # DBTITLE 1,Ingest each folder as a Bronze table
 # Auto Loader: player_box and team_box (all parquet files)
 
@@ -12,7 +17,7 @@ storage_base = "abfss://hoopr-nba-storage@fabricdatastoragefp787.dfs.core.window
 
 for folder in ["player_box", "team_box"]:
     source_path = f"{storage_base}/{folder}/parquet"
-    target_table = f"hooplakehouse.bronze.{folder}"
+    target_table = f"hooplakehouse.hoop.bronze_{folder}"
     checkpoint = f"{storage_base}/_checkpoints/{folder}"
     schema_location = f"{storage_base}/_schemas/{folder}"
 
@@ -53,7 +58,7 @@ df = (spark.readStream
 query = (df.writeStream
     .option("checkpointLocation", checkpoint)
     .trigger(availableNow=True)
-    .toTable("hooplakehouse.bronze.schedules")
+    .toTable("hooplakehouse.hoop.bronze_schedules")
 )
 query.awaitTermination()
 
