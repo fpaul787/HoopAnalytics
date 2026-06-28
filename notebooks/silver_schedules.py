@@ -249,7 +249,7 @@ print(f"Final row count: {df.count():,}")
       .saveAsTable("hooplakehouse.hoop.silver_schedules")
 )
 
-print("silver.schedules written successfully.")
+print("hoop.silver_schedules written successfully.")
 
 # COMMAND ----------
 
