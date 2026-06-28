@@ -24,11 +24,12 @@ for folder in ["player_box", "team_box"]:
         .load(source_path)
     )
 
-    (df.writeStream
+    query = (df.writeStream
         .option("checkpointLocation", checkpoint)
         .trigger(availableNow=True)
         .toTable(target_table)
     )
+    query.awaitTermination()
 
 # COMMAND ----------
 
@@ -49,11 +50,12 @@ df = (spark.readStream
     .load(source_path)
 )
 
-(df.writeStream
+query = (df.writeStream
     .option("checkpointLocation", checkpoint)
     .trigger(availableNow=True)
     .toTable("hooplakehouse.bronze.schedules")
 )
+query.awaitTermination()
 
 # COMMAND ----------
 
