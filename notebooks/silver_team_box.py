@@ -11,7 +11,7 @@
 # MAGIC 4. Drop cosmetic / redundant columns
 # MAGIC 5. Deduplicate
 # MAGIC 6. Add derived / efficiency metrics
-# MAGIC 7. Write to Delta as `hoop.silver_team_box`
+# MAGIC 7. Write to Delta as `hooplakehouse.hoop.silver_team_box`
 
 # COMMAND ----------
 
