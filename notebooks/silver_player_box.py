@@ -1,5 +1,5 @@
 # Databricks notebook source
-df = spark.read.table("HoopLakehouse.bronze.player_box")
+df = spark.read.table("hooplakehouse.bronze.player_box")
 
 # COMMAND ----------
 
